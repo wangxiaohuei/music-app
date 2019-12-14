@@ -83,7 +83,8 @@ export default {
         snap: true,
         snapLoop: this.loop,
         snapThreshold: 0.3,
-        snapSpeed: 400
+        snapSpeed: 400,
+        interval: 4000
       })
 
       this.slider.on('scrollEnd', () => {
@@ -111,6 +112,10 @@ export default {
         this.slider.goToPage(pageIndex, 0, 400)
       }, this.interval)
     }
+  },
+  destroyed() {
+    // 页面销毁时，记得把定时器及时清除
+    clearTimeout(this.timer)
   }
 }
 </script>
